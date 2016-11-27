@@ -1,10 +1,48 @@
 [alias]
 
+	# My personal favorites
+
+	a = add
+    ap = add -p
+    c = commit --verbose
+    ca = commit -a --verbose
+    cm = commit -m
+    cam = commit -a -m
+    m = commit --amend --verbose
+
+    d = diff
+    ds = diff --stat
+    dc = diff --cached
+
+    s = status -s
+    co = checkout
+    cob = checkout -b
+
+    # list branches sorted by last modified
+    b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+
+	# list aliases
+    la = "!git config -l | grep alias | cut -c 7-"
+
+    rao = remote add origin
+	ac = !git add . && git commit -am
+	pushitgood = push -u origin --all
+	undo = reset --soft HEAD~1
+
+	# Example
+	# git init
+	# git rao https://url-here.git
+	# git ac "Message"
+	# git pushitgood
+
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
 	# View the current working tree status using the short format
 	s = status -s
+
+	# View the current working tree status
+	st = status
 
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
@@ -14,6 +52,9 @@
 
 	# Pull in remote changes for the current repository and all its submodules
 	p = !"git pull; git submodule foreach git pull origin master"
+
+	# Pull and rebase
+	pr = !"git pull --rebase"
 
 	# Clone a repository including all submodules
 	c = clone --recursive
@@ -128,7 +169,7 @@
 [commit]
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
+	gpgsign = false
 
 [diff]
 
